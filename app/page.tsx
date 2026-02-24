@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Container from "../components/layout/Container2.tsx";
+import Container from "../components/layout/Container2";
 import OverviewPanel from "../components/panels/OverviewPanel";
 import SystemsPanel from "../components/panels/SystemsPanel";
 import WorkPanel from "../components/panels/WorkPanel";
