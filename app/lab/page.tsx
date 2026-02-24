@@ -1,4 +1,6 @@
-export default function LabPage() {
+import React from 'react';
+
+export default function LabPage(): React.JSX.Element {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">

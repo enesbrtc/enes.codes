@@ -1,4 +1,6 @@
-export default function NotesPage() {
+import React from 'react';
+
+export default function NotesPage(): React.JSX.Element {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
