@@ -1,7 +1,6 @@
 "use client";
 
 import InteractionLayer from "./InteractionLayer";
-import KeyboardNav from "./KeyboardNav";
 
 export default function AppProviders({
   children,
@@ -11,7 +10,6 @@ export default function AppProviders({
   return (
     <>
       <InteractionLayer />
-      <KeyboardNav />
       {children}
     </>
   );

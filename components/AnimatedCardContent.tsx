@@ -11,7 +11,7 @@ export default function AnimatedCardContent() {
   return (
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 neon-border bg-card p-4">
       <div className="flex items-center gap-4">
-        <Avatar src="/2dme.png" fallback="EB" />
+        <img src="/2dme.png" alt="EB" className="w-12 h-12 rounded-full" />
         <div>
           <h2 className="text-2xl font-bold neon-text glitch-text" data-text={data.name}>{data.name}</h2>
           <div className="text-sm text-neutral-400">{data.title}</div>

@@ -7,10 +7,9 @@ import cv from "../../data/cv";
 interface OverviewPanelProps {
   onNavigateToWork?: () => void;
   language: 'en' | 'tr';
-  onLanguageChange: (lang: 'en' | 'tr') => void;
 }
 
-export default function OverviewPanel({ onNavigateToWork, language, onLanguageChange }: OverviewPanelProps) {
+export default function OverviewPanel({ onNavigateToWork, language }: OverviewPanelProps) {
   const data = cv;
   const primaryRole = data.primaryRole || (data.suggestedRoles && data.suggestedRoles[0]);
 
@@ -35,14 +34,6 @@ export default function OverviewPanel({ onNavigateToWork, language, onLanguageCh
 
   return (
     <div className="relative p-4 overflow-hidden">
-      <div className="absolute top-4 right-4 z-10">
-        <button
-          onClick={() => onLanguageChange(language === 'en' ? 'tr' : 'en')}
-          className="px-3 py-1 bg-neutral-900/50 border border-neutral-700/50 rounded-md text-xs font-medium text-neutral-300 hover:bg-neutral-800/70 hover:border-neutral-600/70 transition-all duration-200"
-        >
-          {language === 'en' ? 'TR' : 'EN'}
-        </button>
-      </div>
       {/* Enhanced animated background */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -60,7 +51,7 @@ export default function OverviewPanel({ onNavigateToWork, language, onLanguageCh
       <div className="relative text-center space-y-4 pb-8">
         <div className="flex justify-center">
           <div className="relative">
-            <Avatar src="https://api.dicebear.com/6.x/pixel-art/png?seed=Enes&scale=90" fallback="EB" />
+            <img src="https://api.dicebear.com/6.x/pixel-art/png?seed=Enes&scale=90" alt="EB" className="w-24 h-24 rounded-full" />
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-sm animate-pulse" />
           </div>
         </div>

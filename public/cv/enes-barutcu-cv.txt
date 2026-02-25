@@ -1,0 +1,37 @@
+Enes Barutcu - CV
+================
+
+Application & Platform Engineer
+
+Contact Information:
+- Email: contact@enes.codes
+- LinkedIn: linkedin.com/in/enesbarutcu
+- GitHub: github.com/enesbrtc
+
+Professional Summary:
+Transitioning from NOC/IT operations to Application & Platform Engineering with 5+ years of enterprise IT experience. Focused on building systems that matter through automation and operational efficiency improvements.
+
+Experience:
+- 5+ years in enterprise IT operations (Active Directory, Microsoft 365, NOC)
+- Production web application development and deployment
+- Systems automation and infrastructure engineering
+- Technical writing and documentation
+
+Skills:
+- Programming: TypeScript, Python, JavaScript
+- Frameworks: Next.js, React, Node.js
+- Cloud: AWS, Azure
+- DevOps: Docker, CI/CD, Infrastructure as Code
+- Systems: Linux, Windows Server, Networking
+
+Projects:
+- Paket7: Production e-commerce tracking application
+- TA Store Marketplace: In-development marketplace platform
+- This portfolio: Next.js engineering showcase
+
+Education:
+- Self-taught software engineering
+- Enterprise IT certifications
+- Continuous learning in systems engineering
+
+This is a placeholder CV file. Replace with actual PDF content.

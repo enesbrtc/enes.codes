@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import cv from "../../data/cv";
 
-interface ContactPanelProps {
-  language: 'en' | 'tr';
-}
-
-export default function ContactPanel({ language }: ContactPanelProps) {
+export default function ContactPanel() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,89 +25,91 @@ export default function ContactPanel({ language }: ContactPanelProps) {
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
     window.location.href = `mailto:${cv.email}?subject=${subject}&body=${body}`;
   };
-  const content = {
-    en: {
-      title: "Contact",
-      subtitle: "Let's discuss systems and engineering",
-      email: "Email",
-      phone: "Phone",
-      conversations: "Open to conversations about:",
-      sendMessage: "Send Message",
-      yourName: "Your Name",
-      yourEmail: "Your Email",
-      yourMessage: "Your Message"
-    },
-    tr: {
-      title: "İletişim",
-      subtitle: "Sistemler ve mühendislik hakkında konuşalım",
-      email: "E-posta",
-      phone: "Telefon",
-      conversations: "Şu konular hakkında konuşmaya açığım:",
-      sendMessage: "Mesaj Gönder",
-      yourName: "Adınız",
-      yourEmail: "E-posta Adresiniz",
-      yourMessage: "Mesajınız"
-    }
-  };
+
   return (
-    <div className="space-y-4 p-4">
-      <div className="text-center">
-        <h2 className="text-xl font-bold neon-text glitch-text mb-1">{content[language].title}</h2>
-        <p className="text-xs text-neutral-400">{content[language].subtitle}</p>
-      </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <motion.div
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center space-y-2"
+      >
+        <h2 className="text-heading-2 font-bold">Contact</h2>
+        <p className="text-body-small text-muted-foreground">Let&apos;s discuss systems and engineering</p>
+      </motion.div>
 
-      <div className="max-w-sm mx-auto space-y-5">
-        <div className="text-center space-y-3">
-          <div className="text-base text-neutral-200 font-medium">{cv.name}</div>
-          <div className="text-xs text-neutral-400">{cv.title}</div>
-        </div>
+      <div className="max-w-md mx-auto space-y-6">
+        {/* Contact Info */}
+        <motion.div
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1, duration: 0.3 }}
+          className="text-center space-y-4"
+        >
+          <div className="text-lg font-semibold text-foreground">{cv.name}</div>
+          <div className="text-body-small text-muted-foreground">{cv.title}</div>
+        </motion.div>
 
-        <div className="space-y-3">
-          <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-lg border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300">
-            <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-blue-400 text-sm">💌</span>
+        {/* Contact Methods */}
+        <motion.div
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.3 }}
+          className="space-y-3"
+        >
+          <div className="flex items-center space-x-4 p-4 surface-card pixel-hover">
+            <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+              <span className="text-accent">💌</span>
             </div>
             <div>
-              <div className="text-xs font-medium text-neutral-200">{content[language].email}</div>
-              <div className="text-xs text-neutral-300">{cv.email}</div>
+              <div className="text-sm font-medium text-foreground">Email</div>
+              <div className="text-body-small text-muted-foreground">{cv.email}</div>
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-lg border border-green-500/20 hover:border-green-400/40 transition-all duration-300">
-            <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-green-400 text-sm">📱</span>
+          <div className="flex items-center space-x-4 p-4 surface-card pixel-hover">
+            <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+              <span className="text-accent">📱</span>
             </div>
             <div>
-              <div className="text-xs font-medium text-neutral-200">{content[language].phone}</div>
-              <div className="text-xs text-neutral-300">{cv.phone}</div>
+              <div className="text-sm font-medium text-foreground">Phone</div>
+              <div className="text-body-small text-muted-foreground">{cv.phone}</div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="p-3 bg-gradient-to-br from-neutral-950/50 to-neutral-900/30 rounded-lg border border-neutral-700/30">
-          <h3 className="text-xs font-semibold text-neutral-200 mb-2">{content[language].conversations}</h3>
-          <ul className="text-xs text-neutral-400 space-y-1">
-            <li className="flex items-center space-x-2">
-              <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-              <span>Infrastructure automation</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-              <span>Identity & access management</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-              <span>Platform operations</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-              <span>Engineering growth</span>
-            </li>
+        {/* Topics */}
+        <motion.div
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.3 }}
+          className="surface-card p-6 pixel-hover"
+        >
+          <h3 className="text-lg font-semibold text-accent mb-4">Open to conversations about:</h3>
+          <ul className="text-body text-muted-foreground space-y-2">
+            {[
+              "Infrastructure automation",
+              "Identity & access management",
+              "Platform operations",
+              "Engineering growth"
+            ].map((topic, index) => (
+              <li key={index} className="flex items-center space-x-3">
+                <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                <span>{topic}</span>
+              </li>
+            ))}
           </ul>
-        </div>
+        </motion.div>
 
-        <form onSubmit={handleSubmit} className="p-3 bg-gradient-to-br from-neutral-950/50 to-neutral-900/30 rounded-lg border border-neutral-700/30 space-y-3">
-          <h3 className="text-xs font-semibold text-neutral-200 mb-3">{content[language].sendMessage}</h3>
+        {/* Contact Form */}
+        <motion.form
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.3 }}
+          onSubmit={handleSubmit}
+          className="surface-card p-6 space-y-4 pixel-hover"
+        >
+          <h3 className="text-lg font-semibold text-accent mb-4">Send Message</h3>
 
           <div>
             <input
@@ -118,9 +117,9 @@ export default function ContactPanel({ language }: ContactPanelProps) {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              placeholder={content[language].yourName}
+              placeholder="Your Name"
               required
-              className="w-full px-3 py-2 bg-neutral-800/50 border border-neutral-600 rounded-md text-xs text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20 transition-all duration-200"
+              className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-all duration-200"
             />
           </div>
 
@@ -130,9 +129,9 @@ export default function ContactPanel({ language }: ContactPanelProps) {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder={content[language].yourEmail}
+              placeholder="Your Email"
               required
-              className="w-full px-3 py-2 bg-neutral-800/50 border border-neutral-600 rounded-md text-xs text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20 transition-all duration-200"
+              className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-all duration-200"
             />
           </div>
 
@@ -141,20 +140,20 @@ export default function ContactPanel({ language }: ContactPanelProps) {
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              placeholder={content[language].yourMessage}
+              placeholder="Your Message"
               required
-              rows={3}
-              className="w-full px-3 py-2 bg-neutral-800/50 border border-neutral-600 rounded-md text-xs text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20 transition-all duration-200 resize-none"
+              rows={4}
+              className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-all duration-200 resize-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white text-xs font-medium rounded-md transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"
+            className="w-full py-3 px-6 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors focus-ring"
           >
-            {content[language].sendMessage}
+            Send Message
           </button>
-        </form>
+        </motion.form>
       </div>
     </div>
   );

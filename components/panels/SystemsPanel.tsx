@@ -1,364 +1,142 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
-interface SystemsPanelProps {
-  language: 'en' | 'tr';
-}
+export default function SystemsPanel() {
+  const [expandedSystems, setExpandedSystems] = useState<Set<string>>(new Set());
 
-export default function SystemsPanel({ language }: SystemsPanelProps) {
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
-
-  const toggleSection = (sectionName: string) => {
-    setExpandedSections(prev => {
+  const toggleSystemExpansion = (systemName: string) => {
+    setExpandedSystems(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(sectionName)) {
-        newSet.delete(sectionName);
+      if (newSet.has(systemName)) {
+        newSet.delete(systemName);
       } else {
-        newSet.add(sectionName);
+        newSet.add(systemName);
       }
       return newSet;
     });
   };
-  const content = {
-    en: {
-      title: "Systems I Work With",
-      subtitle: "Exposure and contribution across enterprise infrastructure",
-      identityTitle: "Enterprise Identity Environments",
-      identityDesc: "I work within large-scale identity management systems handling thousands of users",
-      identityWhatIDo: "What I Do",
-      identityTech: "Technologies I Use",
-      identityOutcomes: "Learning Outcomes",
-      identityWhatIDoList: [
-        "Implement automation improvements",
-        "Contribute to operational workflows",
-        "Support identity governance processes",
-        "Learn enterprise-scale patterns"
-      ],
-      identityTechList: [
-        "Active Directory management",
-        "Microsoft 365 administration",
-        "SSO and federation services",
-        "Identity automation tools"
-      ],
-      identityOutcomesText: "Developing expertise in complex enterprise environments and automation challenges",
-      lifecycleTitle: "User Lifecycle Automation",
-      lifecycleDesc: "I explore automation approaches for employee onboarding and offboarding",
-      lifecycleWhatIDoList: [
-        "Experiment with workflow automation",
-        "Implement process improvements",
-        "Support operational efficiency",
-        "Learn automation patterns"
-      ],
-      lifecycleTechList: [
-        "API-driven account creation",
-        "Security group management",
-        "License assignment systems",
-        "Workflow automation tools"
-      ],
-      lifecycleOutcomesText: "Mastering end-to-end process automation and operational workflows",
-      supportTitle: "Internal Support Systems",
-      supportDesc: "I work on self-service tools and support automation for IT operations",
-      supportWhatIDoList: [
-        "Implement self-service features",
-        "Improve support workflows",
-        "Contribute to automation initiatives",
-        "Learn user experience patterns"
-      ],
-      supportTechList: [
-        "Password reset systems",
-        "Device enrollment tools",
-        "Knowledge base integration",
-        "Ticket routing automation"
-      ],
-      supportOutcomesText: "Building expertise in support automation and user-facing system design",
-      monitoringTitle: "Monitoring & Incident Response",
-      monitoringDesc: "I explore observability and automated response patterns",
-      monitoringWhatIDoList: [
-        "Implement monitoring improvements",
-        "Learn incident response workflows",
-        "Contribute to alerting strategies",
-        "Experiment with automation approaches"
-      ],
-      monitoringTechList: [
-        "Alert correlation systems",
-        "Automated remediation tools",
-        "Incident documentation platforms",
-        "Monitoring and observability stacks"
-      ],
-      monitoringOutcomesText: "Gaining deep insights into system reliability and automated incident management"
+
+  const featuredSystems = [
+    {
+      title: "Automated User Lifecycle Management",
+      description: "End-to-end identity automation system serving 1200+ enterprise users",
+      impact: "Reduced provisioning time from 30m to 3m per user",
+      status: "Production",
+      scale: "1200+ users, 3 locations",
+      tech: ["PowerShell", "Python", "Microsoft Graph", "Active Directory"],
+      architecture: "Event-driven automation with approval workflows and comprehensive audit logging"
     },
-    tr: {
-      title: "Çalıştığım Sistemler",
-      subtitle: "Kurumsal altyapı genelinde deneyim ve katkı",
-      identityTitle: "Kurumsal Kimlik Ortamları",
-      identityDesc: "Binlerce kullanıcıyı yöneten büyük ölçekli kimlik yönetim sistemlerinde çalışıyorum",
-      identityWhatIDo: "Ne Yapıyorum",
-      identityTech: "Kullandığım Teknolojiler",
-      identityOutcomes: "Öğrenme Çıktıları",
-      identityWhatIDoList: [
-        "Otomasyon iyileştirmeleri uygularım",
-        "Operasyonel iş akışlarına katkıda bulunurum",
-        "Kimlik yönetimi süreçlerini desteklerim",
-        "Kurumsal ölçekli kalıpları öğrenirim"
-      ],
-      identityTechList: [
-        "Active Directory yönetimi",
-        "Microsoft 365 yönetimi",
-        "SSO ve federasyon servisleri",
-        "Kimlik otomasyon araçları"
-      ],
-      identityOutcomesText: "Karmaşık kurumsal ortamlarda uzmanlık geliştiriyorum ve otomasyon zorluklarını çözüyorum",
-      lifecycleTitle: "Kullanıcı Yaşam Döngüsü Otomasyonu",
-      lifecycleDesc: "Çalışan işe alım ve işten çıkarma süreçleri için otomasyon yaklaşımları keşfediyorum",
-      lifecycleWhatIDoList: [
-        "İş akışı otomasyonu ile deneyler yaparım",
-        "Süreç iyileştirmeleri uygularım",
-        "Operasyonel verimliliği desteklerim",
-        "Otomasyon kalıpları öğrenirim"
-      ],
-      lifecycleTechList: [
-        "API tabanlı hesap oluşturma",
-        "Güvenlik grubu yönetimi",
-        "Lisans atama sistemleri",
-        "İş akışı otomasyon araçları"
-      ],
-      lifecycleOutcomesText: "Uçtan uca süreç otomasyonunda uzmanlaşıyorum ve operasyonel iş akışlarını yönetiyorum",
-      supportTitle: "İç Destek Sistemleri",
-      supportDesc: "BT operasyonları için self-servis araçları ve destek otomasyonu üzerinde çalışıyorum",
-      supportWhatIDoList: [
-        "Self-servis özellikler uygularım",
-        "Destek iş akışlarını iyileştiririm",
-        "Otomasyon girişimlerine katkıda bulunurum",
-        "Kullanıcı deneyimi kalıpları öğrenirim"
-      ],
-      supportTechList: [
-        "Şifre sıfırlama sistemleri",
-        "Cihaz kayıt araçları",
-        "Bilgi tabanı entegrasyonu",
-        "Talep yönlendirme otomasyonu"
-      ],
-      supportOutcomesText: "Destek otomasyonunda uzmanlık geliştiriyorum ve kullanıcı odaklı sistem tasarımı yapıyorum",
-      monitoringTitle: "İzleme ve Olay Müdahalesi",
-      monitoringDesc: "Gözlemlenebilirlik ve otomatik yanıt kalıplarını keşfediyorum",
-      monitoringWhatIDoList: [
-        "İzleme iyileştirmeleri uygularım",
-        "Olay müdahale iş akışlarını öğrenirim",
-        "Uyarı stratejilerine katkıda bulunurum",
-        "Otomasyon yaklaşımları ile deneyler yaparım"
-      ],
-      monitoringTechList: [
-        "Uyarı korelasyon sistemleri",
-        "Otomatik düzeltme araçları",
-        "Olay dokümantasyon platformları",
-        "İzleme ve gözlemlenebilirlik yığınları"
-      ],
-      monitoringOutcomesText: "Sistem güvenilirliği ve otomatik olay yönetiminde derin içgörüler kazanıyorum"
+    {
+      title: "Self-Service Support Automation",
+      description: "Internal platform enabling users to resolve common IT issues independently",
+      impact: "60% reduction in support tickets, 10+ hours/week saved",
+      status: "Production",
+      scale: "800+ active users, 50+ self-service workflows",
+      tech: ["Node.js", "Express", "PowerShell", "ServiceNow API"],
+      architecture: "Microservices architecture with secure API gateways and role-based access control"
+    },
+    {
+      title: "Internal Tools Containerization",
+      description: "Containerized ecosystem of operational utilities with automated deployment",
+      impact: "Eliminated environment drift, 2h → 15m deployment time",
+      status: "Production",
+      scale: "8 services, multi-environment deployment",
+      tech: ["Docker", "Git", "CI/CD", "Kubernetes"],
+      architecture: "Container orchestration with automated testing, deployment pipelines, and monitoring"
     }
-  };
+  ];
+
   return (
-    <div className="space-y-4 p-4">
-      <div className="text-center">
-        <h2 className="text-xl font-bold neon-text glitch-text mb-1">{content[language].title}</h2>
-        <p className="text-xs text-neutral-400">{content[language].subtitle}</p>
-      </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <motion.div
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center space-y-2"
+      >
+        <h2 className="text-heading-2 font-bold">Systems</h2>
+        <p className="text-body-small text-muted-foreground">Featured engineering implementations</p>
+      </motion.div>
 
-      <div className="space-y-3">
-        <div className="bg-gradient-to-br from-neutral-950/50 to-neutral-900/30 rounded-lg border border-neutral-700/30">
-          <button
-            onClick={() => toggleSection('identity')}
-            className="w-full p-3 text-left hover:bg-neutral-800/20 transition-all duration-200"
-          >
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <div className="font-semibold text-base text-neutral-100 mb-1">{content[language].identityTitle}</div>
-                <div className="text-xs text-neutral-400">{content[language].identityDesc}</div>
-              </div>
-              <div className="text-sm text-cyan-400 ml-3 transition-transform duration-200" style={{ transform: expandedSections.has('identity') ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                +
-              </div>
-            </div>
-          </button>
-          {expandedSections.has('identity') && (
-            <div className="px-3 pb-3 border-t border-neutral-700/30">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityWhatIDo}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].identityWhatIDoList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+      {/* Featured Systems */}
+      <div className="space-y-4">
+        {featuredSystems.map((system, index) => {
+          const isExpanded = expandedSystems.has(system.title);
+          return (
+            <motion.div
+              key={system.title}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 * index, duration: 0.3 }}
+              className="surface-card overflow-hidden pixel-hover"
+              whileHover={{ y: -1, scale: 1.002 }}
+            >
+              {/* System Card Header */}
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <h3 className="text-lg font-semibold text-foreground">{system.title}</h3>
+                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${
+                        system.status === 'Production'
+                          ? 'bg-green-500/10 text-green-400 border-green-500/20'
+                          : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
+                      }`}>
+                        {system.status}
+                      </span>
+                    </div>
+                    <p className="text-body text-muted-foreground mb-3">{system.description}</p>
+                    <div className="text-body font-medium text-accent mb-2">{system.impact}</div>
+                    <div className="text-sm text-muted-foreground">{system.scale}</div>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => toggleSystemExpansion(system.title)}
+                    className="p-2 text-muted-foreground hover:text-foreground hover:bg-accent/10 rounded-lg transition-colors"
+                  >
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                    />
+                  </motion.button>
                 </div>
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityTech}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].identityTechList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-3">
-                <div className="font-medium text-neutral-200 mb-1 text-sm">{content[language].identityOutcomes}</div>
-                <div className="text-xs text-neutral-400">{content[language].identityOutcomesText}</div>
-              </div>
-            </div>
-          )}
-        </div>
 
-        <div className="bg-gradient-to-br from-neutral-950/50 to-neutral-900/30 rounded-lg border border-neutral-700/30">
-          <button
-            onClick={() => toggleSection('lifecycle')}
-            className="w-full p-3 text-left hover:bg-neutral-800/20 transition-all duration-200"
-          >
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <div className="font-semibold text-base text-neutral-100 mb-1">{content[language].lifecycleTitle}</div>
-                <div className="text-xs text-neutral-400">{content[language].lifecycleDesc}</div>
-              </div>
-              <div className="text-sm text-cyan-400 ml-3 transition-transform duration-200" style={{ transform: expandedSections.has('lifecycle') ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                +
-              </div>
-            </div>
-          </button>
-          {expandedSections.has('lifecycle') && (
-            <div className="px-3 pb-3 border-t border-neutral-700/30">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityWhatIDo}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].lifecycleWhatIDoList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityTech}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].lifecycleTechList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Tech Stack Preview */}
+                <div className="flex flex-wrap gap-2">
+                  {system.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-muted/50 rounded text-tech border border-border/50"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <div className="mt-3">
-                <div className="font-medium text-neutral-200 mb-1 text-sm">{content[language].identityOutcomes}</div>
-                <div className="text-xs text-neutral-400">{content[language].lifecycleOutcomesText}</div>
-              </div>
-            </div>
-          )}
-        </div>
 
-        <div className="bg-gradient-to-br from-neutral-950/50 to-neutral-900/30 rounded-lg border border-neutral-700/30">
-          <button
-            onClick={() => toggleSection('support')}
-            className="w-full p-3 text-left hover:bg-neutral-800/20 transition-all duration-200"
-          >
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <div className="font-semibold text-base text-neutral-100 mb-1">{content[language].supportTitle}</div>
-                <div className="text-xs text-neutral-400">{content[language].supportDesc}</div>
-              </div>
-              <div className="text-sm text-cyan-400 ml-3 transition-transform duration-200" style={{ transform: expandedSections.has('support') ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                +
-              </div>
-            </div>
-          </button>
-          {expandedSections.has('support') && (
-            <div className="px-3 pb-3 border-t border-neutral-700/30">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityWhatIDo}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].supportWhatIDoList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityTech}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].supportTechList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-3">
-                <div className="font-medium text-neutral-200 mb-1 text-sm">{content[language].identityOutcomes}</div>
-                <div className="text-xs text-neutral-400">{content[language].supportOutcomesText}</div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="bg-gradient-to-br from-neutral-950/50 to-neutral-900/30 rounded-lg border border-neutral-700/30">
-          <button
-            onClick={() => toggleSection('monitoring')}
-            className="w-full p-3 text-left hover:bg-neutral-800/20 transition-all duration-200"
-          >
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <div className="font-semibold text-base text-neutral-100 mb-1">{content[language].monitoringTitle}</div>
-                <div className="text-xs text-neutral-400">{content[language].monitoringDesc}</div>
-              </div>
-              <div className="text-sm text-cyan-400 ml-3 transition-transform duration-200" style={{ transform: expandedSections.has('monitoring') ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                +
-              </div>
-            </div>
-          </button>
-          {expandedSections.has('monitoring') && (
-            <div className="px-3 pb-3 border-t border-neutral-700/30">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityWhatIDo}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].monitoringWhatIDoList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <div className="font-medium text-neutral-200 mb-2 text-sm">{content[language].identityTech}</div>
-                  <ul className="text-xs text-neutral-400 space-y-1">
-                    {content[language].monitoringTechList.map((item, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-3">
-                <div className="font-medium text-neutral-200 mb-1 text-sm">{content[language].identityOutcomes}</div>
-                <div className="text-xs text-neutral-400">{content[language].monitoringOutcomesText}</div>
-              </div>
-            </div>
-          )}
-        </div>
+              {/* Expanded Technical Details */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="border-t border-border"
+                  >
+                    <div className="p-6">
+                      <h4 className="text-sm font-semibold text-accent mb-2">Architecture</h4>
+                      <p className="text-body-small text-muted-foreground">{system.architecture}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

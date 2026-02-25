@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-neutral-950 text-neutral-100">
+      <body className="bg-background text-foreground">
         <AppProviders>
           {children}
         </AppProviders>
