@@ -8,7 +8,7 @@ interface ProjectsGridProps {
 
 export default function ProjectsGrid({ projects, expandable = true }: ProjectsGridProps) {
   return (
-    <div className="grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(420px,1fr))]">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       {projects.map((project) => (
         <ProjectCard key={project.title} project={project} expandable={expandable} />
       ))}

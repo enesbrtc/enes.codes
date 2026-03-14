@@ -19,7 +19,7 @@ export default function ProjectCard({ project, expandable = true }: ProjectCardP
 
   return (
     <article
-      className="panel-tile flex w-full min-w-0 flex-col gap-4 p-6"
+      className="panel-tile flex w-full max-w-full min-w-0 flex-col gap-4 p-[18px] sm:p-6"
       role={isExpandable ? 'button' : undefined}
       tabIndex={isExpandable ? 0 : undefined}
       aria-expanded={isExpandable ? expanded : undefined}
@@ -47,7 +47,7 @@ export default function ProjectCard({ project, expandable = true }: ProjectCardP
       <ProjectTags tech={project.tech} />
 
       {(project.links?.live || project.links?.repo) && (
-        <div className="mt-4 flex flex-wrap gap-4">
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-4">
           {project.links?.live && (
             <a
               href={project.links.live}

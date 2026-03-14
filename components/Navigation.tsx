@@ -134,6 +134,14 @@ export default function Navigation({ activeView, onViewChange, isTransitioning }
                   );
                 })}
               </div>
+              <div className="hidden items-center gap-[6px] text-[12px] tracking-[0.03em] text-[rgba(215,224,255,0.6)] md:flex">
+                <motion.span
+                  className="h-2 w-2 rounded-full bg-[#2CF2C0]"
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <span>system online</span>
+              </div>
               {/* Separator */}
               <div className="mx-1 hidden h-6 w-px bg-white/8 md:block"></div>
               {/* RIGHT: Utility Actions */}
@@ -226,6 +234,15 @@ export default function Navigation({ activeView, onViewChange, isTransitioning }
                   })}
 
                   <div className="border-t border-white/10 my-3" />
+
+                  <div className="flex items-center gap-[6px] px-4 py-2 text-[12px] tracking-[0.03em] text-[rgba(215,224,255,0.6)]">
+                    <motion.span
+                      className="h-2 w-2 rounded-full bg-[#2CF2C0]"
+                      animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    <span>system online</span>
+                  </div>
 
                   {/* Terminal Button */}
                   <motion.button

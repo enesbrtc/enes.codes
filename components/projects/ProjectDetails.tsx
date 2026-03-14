@@ -14,19 +14,19 @@ export default function ProjectDetails({ role, solution, impact }: ProjectDetail
       <div className="space-y-4">
         {role && (
           <div>
-            <span className="text-xs uppercase tracking-wide text-white/50">Role</span>
+            <span className="text-xs tracking-wide text-white/50">role</span>
             <p className="mt-1.5 text-sm leading-6 text-white/65">{role}</p>
           </div>
         )}
         {solution && (
           <div>
-            <span className="text-xs uppercase tracking-wide text-white/50">Solution</span>
+            <span className="text-xs tracking-wide text-white/50">solution</span>
             <p className="mt-1.5 text-sm leading-6 text-white/65">{solution}</p>
           </div>
         )}
         {impact && (
           <div>
-            <span className="text-xs uppercase tracking-wide text-white/50">Impact</span>
+            <span className="text-xs tracking-wide text-white/50">impact</span>
             <p className="mt-1.5 text-sm leading-6 text-white/65">{impact}</p>
           </div>
         )}
