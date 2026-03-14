@@ -7,10 +7,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-background text-foreground">
+    <html lang="en" className="dark">
+      <body className="flex min-h-screen flex-col bg-background text-foreground">
         <AppProviders>
-          {children}
+          <main className="flex-1 pt-20 pb-4">{children}</main>
         </AppProviders>
       </body>
     </html>

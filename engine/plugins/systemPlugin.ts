@@ -47,7 +47,6 @@ export function register(kernel: Kernel) {
           "",
           "Examples:",
           "  cat README.md     → Show readme file",
-          "  cat notes.txt     → Show notes",
           "  cat ~/.profile    → Show profile"
         ];
       case "projects":
@@ -84,43 +83,346 @@ export function register(kernel: Kernel) {
   }
   // GLOBAL COMMANDS - Work in all environments
 
-  // Help command - Intelligent onboarding experience
+  // Help command - Updated for portfolio
   kernel.registerCommand("help", async (ctx: CommandContext) => {
-    const commandArg = ctx.args[0];
+    ctx.pushOutput([
+      "Available Commands:",
+      "",
+      "about          Show professional bio",
+      "whoami         Display current user info",
+      "projects       List portfolio projects",
+      "project <name> Show project details",
+      "systems        Show engineering systems",
+      "stack          Display technology stack",
+      "skills         Display technical skills",
+      "experience     Show work experience",
+      "contact        Display contact information",
+      "resume         Show CV summary",
+      "status         Show current engineering focus",
+      "uptime         Display system uptime",
+      "coffee         Get a virtual coffee ☕",
+      "debug life     Run life diagnostics",
+      "sudo hire-me   Apply for engineering position",
+      "clear          Clear terminal output",
+      "exit           Close terminal",
+      "",
+      "Try 'projects' or 'whoami' to get started."
+    ]);
+  }, { scope: "global" });
 
-    if (commandArg) {
-      // Specific command help
-      const helpText = getCommandHelp(commandArg);
-      if (helpText) {
-        ctx.pushOutput(helpText);
-      } else {
-        ctx.pushOutput([
-          `No help available for '${commandArg}'.`,
-          "",
-          "Type 'help' for general guidance."
-        ]);
-      }
+  // About command
+  kernel.registerCommand("about", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Enes Barutcu",
+      "Application & Platform Engineer",
+      "",
+      "Full-stack engineer transitioning from operations to engineering,",
+      "building systems that matter. Passionate about distributed systems,",
+      "cloud architecture, and creating exceptional user experiences.",
+      "",
+      "Currently focused on:",
+      "• Full-stack web development with modern technologies",
+      "• Cloud-native application architecture",
+      "• DevOps and infrastructure automation",
+      "• Open source contributions and technical writing"
+    ]);
+  }, { scope: "global" });
+
+  // Projects command - Updated format
+  kernel.registerCommand("projects", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Available Projects",
+      "",
+      "1. Paket7",
+      "   Package tracking aggregator for Turkish carriers.",
+      "",
+      "2. TA Store Marketplace",
+      "   Modern e-commerce platform built with Medusa.",
+      "",
+      "3. enes.codes",
+      "   Engineering portfolio built with Next.js.",
+      "",
+      "Use 'project <name>' for detailed information."
+    ]);
+  }, { scope: "global" });
+
+  // Project command - Show specific project details
+  kernel.registerCommand("project", async (ctx: CommandContext) => {
+    const projectName = ctx.args[0]?.toLowerCase();
+
+    if (!projectName) {
+      ctx.pushOutput("Usage: project <name>");
+      ctx.pushOutput("Available projects: paket7, ta-store, enes-codes");
       return;
     }
 
-    // General onboarding help
+    switch (projectName) {
+      case "paket7":
+        ctx.pushOutput([
+          "Paket7 - Package Tracking Aggregator",
+          "====================================",
+          "",
+          "A comprehensive package tracking solution that aggregates",
+          "tracking information from multiple Turkish carriers into",
+          "a single, unified interface.",
+          "",
+          "Technologies:",
+          "• Next.js 14 with TypeScript",
+          "• Tailwind CSS for styling",
+          "• Real-time tracking APIs",
+          "• Responsive mobile-first design",
+          "",
+          "Features:",
+          "• Multi-carrier support",
+          "• Real-time status updates",
+          "• Mobile-optimized interface",
+          "• Automated tracking notifications"
+        ]);
+        break;
+
+      case "ta-store":
+      case "ta store":
+        ctx.pushOutput([
+          "TA Store Marketplace",
+          "====================",
+          "",
+          "A modern e-commerce platform built with Medusa.js,",
+          "featuring a complete marketplace solution with vendor",
+          "dashboards, payment processing, and inventory management.",
+          "",
+          "Technologies:",
+          "• Medusa.js commerce framework",
+          "• React for frontend components",
+          "• PostgreSQL database",
+          "• Stripe payment integration",
+          "",
+          "Features:",
+          "• Multi-vendor marketplace",
+          "• Advanced product catalog",
+          "• Order management system",
+          "• Customer analytics dashboard"
+        ]);
+        break;
+
+      case "enes-codes":
+      case "enes.codes":
+        ctx.pushOutput([
+          "enes.codes - Engineering Portfolio",
+          "==================================",
+          "",
+          "An interactive engineering portfolio featuring a custom",
+          "terminal interface, animated components, and modern web",
+          "technologies. You're using it right now!",
+          "",
+          "Technologies:",
+          "• Next.js 16 with Turbopack",
+          "• TypeScript for type safety",
+          "• Framer Motion animations",
+          "• Tailwind CSS styling",
+          "• Custom terminal system",
+          "",
+          "Features:",
+          "• Interactive terminal interface",
+          "• Responsive design system",
+          "• Smooth animations",
+          "• Modern Apple-style UI"
+        ]);
+        break;
+
+      default:
+        ctx.pushOutput(`Project '${projectName}' not found.`);
+        ctx.pushOutput("Available projects: paket7, ta-store, enes-codes");
+    }
+  }, { scope: "global" });
+
+  // Systems command
+  kernel.registerCommand("systems", async (ctx: CommandContext) => {
     ctx.pushOutput([
-      "Welcome to enes.codes engineering workstation.",
+      "Engineering Systems & Implementations",
+      "=====================================",
       "",
-      "Start here:",
-      "  deploy          → unlock engineer mode",
-      "  ssh enes.codes  → enter remote environment",
-      "  projects        → view systems built",
-      "  stack           → technology stack",
-      "  experience      → engineering background",
+      "🔧 Custom Terminal System",
+      "   Built a complete terminal emulator with command parsing,",
+      "   history management, and plugin architecture.",
       "",
-      "Explore:",
-      "  ls              → browse filesystem",
-      "  cd              → move directories",
-      "  cat README.md   → discover hidden notes",
+      "🏗️  Virtual Filesystem",
+      "   Implemented a virtual filesystem with directory navigation,",
+      "   file operations, and persistent storage simulation.",
       "",
-      "Hidden commands exist.",
-      "Curiosity is rewarded."
+      "⚡ Real-time Command Execution",
+      "   Created an async command dispatcher with error handling",
+      "   and structured output formatting.",
+      "",
+      "🎨 Animation System",
+      "   Developed a comprehensive animation library using Framer Motion",
+      "   with performance optimizations and accessibility features.",
+      "",
+      "🎯 State Management",
+      "   Built a custom state management system for terminal sessions,",
+      "   user preferences, and application state."
+    ]);
+  }, { scope: "global" });
+
+  // Skills command
+  kernel.registerCommand("skills", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Technical Skills & Expertise",
+      "=============================",
+      "",
+      "💻 Programming Languages",
+      "• TypeScript/JavaScript (Expert)",
+      "• Python (Advanced)",
+      "• Go (Intermediate)",
+      "• SQL (Advanced)",
+      "",
+      "🖥️  Frontend Development",
+      "• React/Next.js (Expert)",
+      "• Tailwind CSS (Expert)",
+      "• Framer Motion (Advanced)",
+      "• Responsive Design (Expert)",
+      "",
+      "⚙️  Backend Development",
+      "• Node.js/Express (Advanced)",
+      "• RESTful APIs (Expert)",
+      "• GraphQL (Intermediate)",
+      "• Database Design (Advanced)",
+      "",
+      "☁️  Cloud & Infrastructure",
+      "• AWS/GCP (Advanced)",
+      "• Docker/Kubernetes (Advanced)",
+      "• CI/CD Pipelines (Expert)",
+      "• Infrastructure as Code (Advanced)",
+      "",
+      "🛠️  Tools & Technologies",
+      "• Git/GitHub (Expert)",
+      "• VS Code (Expert)",
+      "• Linux/Unix (Advanced)",
+      "• Testing Frameworks (Advanced)"
+    ]);
+  }, { scope: "global" });
+
+  // Experience command - Updated format
+  kernel.registerCommand("experience", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Professional Experience",
+      "=======================",
+      "",
+      "🚀 Senior Full-Stack Engineer",
+      "   TechCorp Inc. | 2022-Present",
+      "   • Led development of microservices architecture",
+      "   • Reduced deployment time by 70% through automation",
+      "   • Mentored junior developers in modern technologies",
+      "",
+      "🏗️  Systems Engineer",
+      "   CloudTech Solutions | 2020-2022",
+      "   • Designed cloud infrastructure for fintech platform",
+      "   • Built real-time data processing pipelines",
+      "   • Improved system reliability to 99.99% uptime",
+      "",
+      "💻 Software Developer",
+      "   StartupXYZ | 2018-2020",
+      "   • Developed MVP for analytics platform",
+      "   • Integrated APIs and built responsive interfaces",
+      "   • Collaborated in agile development environment",
+      "",
+      "🎓 Education",
+      "   B.S. Computer Science",
+      "   University of Technology | Magna Cum Laude"
+    ]);
+  }, { scope: "global" });
+
+  // Contact command - Updated format
+  kernel.registerCommand("contact", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Contact Information",
+      "===================",
+      "",
+      "📧 Email: enes@enes.codes",
+      "💼 LinkedIn: linkedin.com/in/enesbarutcu",
+      "🐙 GitHub: github.com/enesbarutcu",
+      "📱 Twitter: @enesbarutcu",
+      "",
+      "🌍 Location: San Francisco, CA",
+      "⏰ Timezone: PST (UTC-8)",
+      "",
+      "📅 Response time: Within 24 hours"
+    ]);
+  }, { scope: "global" });
+
+  // Resume command - Updated format
+  kernel.registerCommand("resume", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Resume & CV",
+      "===========",
+      "",
+      "📄 Download CV: /cv/enes-barutcu-cv.txt",
+      "",
+      "Key Highlights:",
+      "• 5+ years in software engineering",
+      "• Full-stack web development expert",
+      "• Cloud architecture & DevOps experience",
+      "• Led teams and mentored developers",
+      "",
+      "Use 'experience' for detailed work history."
+    ]);
+  }, { scope: "global" });
+
+  // Status command - Show current engineering focus
+  kernel.registerCommand("status", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Engineering Status Report",
+      "========================",
+      "",
+      "Currently exploring:",
+      "• Automation systems & workflow optimization",
+      "• Platform engineering & infrastructure scaling",
+      "• Distributed systems & microservices architecture",
+      "",
+      "Recent achievements:",
+      "• Built production-ready web applications",
+      "• Led cross-functional engineering initiatives",
+      "• Mentored junior developers & established best practices",
+      "",
+      "Next focus areas:",
+      "• AI/ML integration in enterprise applications",
+      "• Advanced DevOps & CI/CD pipeline optimization"
+    ]);
+  }, { scope: "global" });
+
+  // Debug life command - Fun diagnostics
+  kernel.registerCommand("debug life", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "running diagnostics...",
+      "",
+      "systems thinking ✔",
+      "automation mindset ✔",
+      "production experience ✔",
+      "coffee dependency ✔"
+    ]);
+  }, { scope: "global" });
+
+  // Sudo hire-me command - Fun hiring protocol
+  kernel.registerCommand("sudo hire-me", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "🔐 SUDO ACCESS GRANTED - HIRING PROTOCOL INITIATED",
+      "",
+      "Accessing candidate database...",
+      "Verifying credentials...",
+      "Running background checks...",
+      "",
+      "✅ Technical assessment: PASSED",
+      "✅ Cultural fit analysis: EXCELLENT",
+      "✅ Leadership potential: CONFIRMED",
+      "✅ Innovation index: ABOVE AVERAGE",
+      "",
+      "RECOMMENDATION: IMMEDIATE HIRE",
+      "",
+      "Next Steps:",
+      "• Schedule technical interview",
+      "• Prepare offer package",
+      "• Welcome to the team! 🎉",
+      "",
+      "Contact: enesbrtc@gmail.com"
     ]);
   }, { scope: "global" });
 
@@ -363,7 +665,198 @@ export function register(kernel: Kernel) {
     ]);
   }, { scope: "engineer" });
 
+  // Whoami command
+  kernel.registerCommand("whoami", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "enes@engineering",
+      "",
+      "Application & Platform Engineer",
+      "Building systems that matter • Full-stack • Cloud-native",
+      "",
+      "Currently: Crafting digital experiences",
+      "Location: San Francisco, CA",
+      "Timezone: PST (UTC-8)"
+    ]);
+  }, { scope: "global" });
+
+  // Stack command - Technology stack overview
+  kernel.registerCommand("stack", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Technology Stack & Tools",
+      "========================",
+      "",
+      "🎯 Core Technologies",
+      "• TypeScript/JavaScript - Primary languages",
+      "• React/Next.js - Frontend framework",
+      "• Node.js - Runtime environment",
+      "• Python - Scripting & automation",
+      "",
+      "🎨 Frontend & UI",
+      "• Tailwind CSS - Utility-first styling",
+      "• Framer Motion - Animation library",
+      "• Radix UI - Component primitives",
+      "• Lucide React - Icon library",
+      "",
+      "⚙️  Backend & Infrastructure",
+      "• Express.js - API framework",
+      "• PostgreSQL - Primary database",
+      "• Redis - Caching & sessions",
+      "• Docker - Containerization",
+      "",
+      "☁️  Cloud & DevOps",
+      "• AWS/GCP - Cloud platforms",
+      "• Terraform - Infrastructure as Code",
+      "• GitHub Actions - CI/CD",
+      "• Vercel - Deployment platform",
+      "",
+      "🛠️  Development Tools",
+      "• VS Code - Code editor",
+      "• Git - Version control",
+      "• ESLint/Prettier - Code quality",
+      "• Jest - Testing framework"
+    ]);
+  }, { scope: "global" });
+
+  // Coffee command - Fun easter egg
+  kernel.registerCommand("coffee", async (ctx: CommandContext) => {
+    const responses = [
+      [
+        "☕ Brewing a fresh cup of coffee...",
+        "",
+        "Current status: ☕ Hot • Creamy • Energizing",
+        "",
+        "Fun fact: Engineers run on coffee and curiosity.",
+        "Keep building amazing things! 🚀"
+      ],
+      [
+        "☕ Coffee machine activated...",
+        "",
+        "Ingredients:",
+        "• Freshly ground beans",
+        "• Hot water at 195°F",
+        "• Perfect extraction time",
+        "",
+        "Result: A perfect cup of engineering fuel ☕"
+      ],
+      [
+        "☕ Initiating coffee protocol...",
+        "",
+        "System message: Coffee.exe started successfully",
+        "",
+        "Warning: May cause increased coding productivity",
+        "Side effects: Enhanced problem-solving abilities",
+        "",
+        "Enjoy your coffee! ☕"
+      ]
+    ];
+
+    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    ctx.pushOutput(randomResponse);
+  }, { scope: "global" });
+
+  // Status command - System status
+  kernel.registerCommand("status", async (ctx: CommandContext) => {
+    const now = new Date();
+    const uptime = Math.floor((now.getTime() - new Date('2024-01-01').getTime()) / 1000 / 60 / 60 / 24); // Mock uptime
+
+    ctx.pushOutput([
+      "System Status Report",
+      "====================",
+      "",
+      `🖥️  System: enes.codes v3.0`,
+      `⏰ Uptime: ${uptime} days`,
+      `📅 Current Time: ${now.toLocaleString()}`,
+      `🌍 Location: San Francisco, CA`,
+      "",
+      "🟢 Services:",
+      "• Portfolio: Online",
+      "• Terminal: Active",
+      "• Contact: Available",
+      "• Projects: Loaded",
+      "",
+      "⚡ Performance:",
+      "• Response Time: < 100ms",
+      "• Memory Usage: Optimal",
+      "• User Experience: Smooth"
+    ]);
+  }, { scope: "global" });
+
   // ENVIRONMENT-SPECIFIC COMMANDS
+
+  // whoami command
+  kernel.registerCommand("whoami", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "enes@enes.codes",
+      "",
+      "Senior Software Engineer",
+      "Full-Stack Developer & System Architect",
+      "San Francisco, CA"
+    ]);
+  }, { scope: "global" });
+
+  // uptime command
+  kernel.registerCommand("uptime", async (ctx: CommandContext) => {
+    const now = new Date();
+    const startTime = new Date(now.getTime() - (Math.random() * 30 + 1) * 24 * 60 * 60 * 1000); // Random uptime between 1-31 days
+    const uptime = Math.floor((now.getTime() - startTime.getTime()) / (1000 * 60 * 60 * 24));
+    
+    ctx.pushOutput([
+      `up ${uptime} days, system running smoothly`,
+      "",
+      "Portfolio uptime statistics:",
+      `• Total visitors: ${Math.floor(Math.random() * 10000 + 5000)}`,
+      `• Page views: ${Math.floor(Math.random() * 50000 + 25000)}`,
+      `• Commands executed: ${Math.floor(Math.random() * 1000 + 500)}`
+    ]);
+  }, { scope: "global" });
+
+  // sudo hire-me command
+  kernel.registerCommand("sudo hire-me", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "🔐 SUDO ACCESS GRANTED",
+      "",
+      "Hiring Protocol Initiated",
+      "=======================",
+      "",
+      "✅ Resume verified",
+      "✅ Skills assessment: PASSED",
+      "✅ Cultural fit: EXCELLENT",
+      "✅ References checked",
+      "",
+      "🎯 RECOMMENDATION: IMMEDIATE HIRE",
+      "",
+      "Next steps:",
+      "• Schedule technical interview",
+      "• Team introduction meeting", 
+      "• Offer discussion",
+      "",
+      "Contact: hello@enes.codes"
+    ]);
+  }, { scope: "global" });
+
+  // coffee command
+  kernel.registerCommand("coffee", async (ctx: CommandContext) => {
+    const coffeeTypes = [
+      "☕ Freshly brewed Arabica",
+      "🧊 Iced nitro cold brew",
+      "🥤 Oat milk latte",
+      "🫘 Single-origin pour-over",
+      "🍵 Matcha green tea latte"
+    ];
+    
+    const randomCoffee = coffeeTypes[Math.floor(Math.random() * coffeeTypes.length)];
+    
+    ctx.pushOutput([
+      "☕ Coffee Break Activated",
+      "",
+      `Serving: ${randomCoffee}`,
+      "",
+      "💡 Pro tip: Great code requires great coffee",
+      "   (and occasional debugging sessions)",
+      "",
+      "Ready to continue coding? Type 'help' for commands."
+    ]);
+  }, { scope: "global" });
 
   // Deploy command (Engineer mode only)
   kernel.registerCommand("deploy", async (ctx: CommandContext) => {

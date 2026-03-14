@@ -82,10 +82,19 @@ export async function runCommand(input: string, environment: "local" | "engineer
     return;
   }
 
-  // Parse command and arguments
-  const parts = trimmed.split(/\s+/);
-  const command = parts[0].toLowerCase();
-  const args = parts.slice(1);
+  // Check for multi-word commands first
+  let command = trimmed.toLowerCase();
+  let args: string[] = [];
+
+  // Try the full input as command
+  if (registry.has(command)) {
+    // It's a multi-word command
+  } else {
+    // Parse as single word command with args
+    const parts = trimmed.split(/\s+/);
+    command = parts[0].toLowerCase();
+    args = parts.slice(1);
+  }
 
   const registration = registry.get(command);
   if (!registration) {

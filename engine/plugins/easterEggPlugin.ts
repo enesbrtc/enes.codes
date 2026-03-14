@@ -124,4 +124,67 @@ export function register(kernel: Kernel) {
       "or explore with 'ls' and 'cd' to discover more."
     ]);
   }, { hidden: true });
+
+  // Konami code command - Hidden easter egg
+  kernel.registerCommand("konami", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "🕹️  KONAMI CODE ACTIVATED!",
+      "",
+      "↑ ↑ ↓ ↓ ← → ← → B A START",
+      "",
+      "Cheat mode enabled:",
+      "• Unlimited coffee ☕",
+      "• Instant code compilation ⚡",
+      "• Bug-free deployments 🎯",
+      "• Infinite patience with legacy code 🧘",
+      "",
+      "You are now 30% more productive!",
+      "(This is not actually a cheat code, but wouldn't that be cool?)"
+    ]);
+  }, { hidden: true });
+
+  // 42 command - Hitchhiker's Guide reference
+  kernel.registerCommand("42", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "The Answer to the Ultimate Question",
+      "of Life, the Universe, and Everything",
+      "",
+      "42",
+      "",
+      "But what was the question again?",
+      "",
+      "In the meantime, here's what I do know:",
+      "• Build great software",
+      "• Solve interesting problems",
+      "• Help teams succeed",
+      "• Never stop learning",
+      "",
+      "The meaning of life might be 42,",
+      "but the meaning of engineering is building something meaningful."
+    ]);
+  }, { hidden: true });
+
+  // Matrix command - The Matrix reference
+  kernel.registerCommand("matrix", async (ctx: CommandContext) => {
+    ctx.pushOutput([
+      "Wake up, Neo...",
+      "",
+      "The Matrix has you...",
+      "",
+      "Follow the white rabbit.",
+      "",
+      "Knock, knock, Neo.",
+      "",
+      "💊 Red pill: Choose the difficult path of engineering",
+      "💊 Blue pill: Stick with the comfortable status quo",
+      "",
+      "You took the red pill. Welcome to the real world of:",
+      "• Complex system design",
+      "• Never-ending debugging",
+      "• Production outages at 3 AM",
+      "• The joy of a working deployment",
+      "",
+      "There is no spoon. There are only pull requests and code reviews."
+    ]);
+  }, { hidden: true });
 }

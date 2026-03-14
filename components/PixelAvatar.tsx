@@ -88,7 +88,7 @@ export default function PixelAvatar({
   return (
     <div className={`relative ${className}`}>
       <div
-        className="relative overflow-hidden rounded-lg border border-border bg-card"
+        className="relative overflow-hidden surface-card p-0"
         style={{
           width: size,
           height: size,

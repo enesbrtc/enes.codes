@@ -7,8 +7,9 @@ const links = [
   { href: "/", label: "HOME" },
   { href: "/projects", label: "PROJECTS" },
   { href: "/lab", label: "LAB" },
-  { href: "/notes", label: "NOTES" },
+  
 ];
+
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -45,7 +46,7 @@ export default function Navbar() {
           padding: 0.35rem 0.8rem;
           font-size: 0.75rem;
           font-weight: 700;
-          font-family: 'Courier New', monospace;
+          font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
           letter-spacing: 0.03em;
           text-decoration: none;
           color: var(--foreground);

@@ -9,7 +9,7 @@ export default function AnimatedCardContent() {
   const data = cv;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 neon-border bg-card p-4">
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 neon-border surface-card p-4">
       <div className="flex items-center gap-4">
         <img src="/2dme.png" alt="EB" className="w-12 h-12 rounded-full" />
         <div>

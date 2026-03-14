@@ -13,7 +13,7 @@ export default function ExportCvButton() {
           <title>${cv.name} - CV</title>
           <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; }
+            body { font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #fff; font-feature-settings: 'liga' 1; }
             .container { max-width: 850px; margin: 0 auto; padding: 40px; background: white; }
             .header { border-bottom: 3px solid #00ff41; padding-bottom: 20px; margin-bottom: 20px; }
             .header h1 { font-size: 28px; color: #000; margin-bottom: 5px; }
@@ -144,7 +144,7 @@ export default function ExportCvButton() {
 
     const win = window.open("", "_blank");
     if (win) {
-      win.document.write(`<pre style="font-family: monospace; white-space: pre-wrap;">${textLines.join("\n")}</pre>`);
+      win.document.write(`<pre style="font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-feature-settings: 'liga' 1; white-space: pre-wrap;">${textLines.join("\n")}</pre>`);
       win.document.close();
     }
   };

@@ -1,31 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import Layout from "../components/Layout";
 import Navigation from "../components/Navigation";
-import { useEngineerMode } from "@/hooks/useEngineerMode";
-import { useTerminalState } from "@/hooks/useTerminalState";
 import FocusModeOverlay from "../components/FocusModeOverlay";
+import Shell from "../components/Shell";
+import { disableFocusMode } from "@/engine/system/focusMode";
+import { useEngineerMode } from "../hooks/useEngineerMode";
+import { useTerminalState } from "../hooks/useTerminalState";
+import { setTerminalCloseCallback, closeTerminal, setTerminalOpen } from "../lib/terminalState";
 
 const HomePanel = dynamic(() => import('../components/panels/HomePanel'), { ssr: false });
 const ProjectsPanel = dynamic(() => import('../components/panels/ProjectsPanel'), { ssr: false });
 const SystemsPanel = dynamic(() => import('../components/panels/SystemsPanel'), { ssr: false });
-const EngineeringLogPanel = dynamic(() => import('../components/panels/EngineeringLogPanel'), { ssr: false });
-const WritingPanel = dynamic(() => import('../components/panels/WritingPanel'), { ssr: false });
 const AboutPanel = dynamic(() => import('../components/panels/AboutPanel'), { ssr: false });
 const ContactPanel = dynamic(() => import('../components/panels/ContactPanel'), { ssr: false });
 const HiddenEngineeringLogPanel = dynamic(() => import('../components/panels/HiddenEngineeringLogPanel'), { ssr: false });
 
-type ViewType = "home" | "projects" | "systems" | "engineering-log" | "writing" | "about" | "contact" | "hidden-engineering-log";
+type ViewType = "home" | "projects" | "systems" | "about" | "contact" | "hidden-engineering-log";
 
 export default function HomePage() {
   const [activeView, setActiveView] = useState<ViewType>("home");
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [shellOpen, setShellOpen] = useState(false);
   const isEngineerMode = useEngineerMode();
   const isTerminalOpen = useTerminalState();
+
+  // Set terminal close callback
+  useEffect(() => {
+    setTerminalCloseCallback(() => {
+      setTerminalOpen(false);
+      disableFocusMode();
+    });
+  }, []);
 
   const handleViewChange = (view: ViewType) => {
     if (view === activeView || isTransitioning) return;
@@ -33,17 +41,31 @@ export default function HomePage() {
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveView(view);
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       setIsTransitioning(false);
     }, 300);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [activeView]);
+
+  useEffect(() => {
+    const handleDashboardNavigate = (event: Event) => {
+      const customEvent = event as CustomEvent<{ view?: ViewType }>;
+      if (!customEvent.detail?.view) return;
+      handleViewChange(customEvent.detail.view);
+    };
+
+    window.addEventListener('dashboard:navigate', handleDashboardNavigate as EventListener);
+    return () => window.removeEventListener('dashboard:navigate', handleDashboardNavigate as EventListener);
+  }, [activeView, isTransitioning]);
 
   const renderActivePanel = () => {
     const panels = {
       home: HomePanel,
       projects: ProjectsPanel,
       systems: SystemsPanel,
-      "engineering-log": EngineeringLogPanel,
-      writing: WritingPanel,
       about: AboutPanel,
       contact: ContactPanel,
       "hidden-engineering-log": HiddenEngineeringLogPanel,
@@ -71,18 +93,18 @@ export default function HomePage() {
         )}
       </AnimatePresence>
       <Layout>
-        <div className="relative min-h-[70vh]">
+        <div className="relative flex min-h-full flex-col">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeView}
-              initial={{ opacity: 0, y: 12, scale: 0.98 }}
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              exit={{ opacity: 0, y: -16, scale: 0.98 }}
               transition={{
-                duration: 0.3,
-                ease: "easeOut"
+                duration: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className="p-6 md:p-8"
+              className="flex-1 px-1 py-1 sm:px-2"
             >
               {renderActivePanel()}
             </motion.div>
@@ -101,28 +123,16 @@ export default function HomePage() {
           )}
         </div>
 
-      {/* Version Footer */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.6 }}
-        className="text-center py-8"
-      >
-        <div className="flex flex-col items-center gap-2">
-          {isEngineerMode && (
-            <span className="text-xs text-green-500 lowercase tracking-wide">
-              engineer mode active
-            </span>
-          )}
-          <span className="text-muted-foreground text-sm">
-            v3.0 - modern engineering
-          </span>
-        </div>
-      </motion.div>
-    </Layout>
+      </Layout>
 
     {/* Focus Mode Overlay */}
     <FocusModeOverlay />
+    
+    {/* Terminal Shell */}
+    <Shell 
+      open={isTerminalOpen} 
+      onClose={closeTerminal} 
+    />
     </>
   );
 }

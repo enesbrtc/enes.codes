@@ -39,7 +39,6 @@ components/
 │   ├── ProjectsPanel.tsx
 │   ├── SystemsPanel.tsx
 │   ├── EngineeringLogPanel.tsx
-│   ├── WritingPanel.tsx
 │   ├── AboutPanel.tsx
 │   └── ContactPanel.tsx
 └── [utilities]/
@@ -79,7 +78,7 @@ data/
 ### Minimal Navigation Philosophy
 - Floating navbar that appears/disappears based on scroll
 - No persistent sidebar or footer navigation
-- Keyboard shortcuts (g=projects, h=home, l=lab, n=notes)
+- Keyboard shortcuts (g=projects, h=home, l=lab)
 - Mobile-responsive with collapsible menu
 
 ## Performance Principles

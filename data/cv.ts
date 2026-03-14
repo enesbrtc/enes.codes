@@ -3,6 +3,8 @@ export const cv = {
   location: "Istanbul",
   phone: "+90 534 424 6888",
   email: "enesbrtc@gmail.com",
+  github: "https://github.com/enesbrtc",
+  linkedin: "https://www.linkedin.com/in/enesbarutcu",
   title: "Hybrid IT Ops + Automation Engineer",
   tagline: "I design automation that keeps infrastructure running.",
   summary:

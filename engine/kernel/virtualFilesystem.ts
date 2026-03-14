@@ -30,7 +30,6 @@ class VirtualFilesystem {
     // Add user directories
     enes.children!.set("projects", this.createDirectory("projects"));
     enes.children!.set("about", this.createDirectory("about"));
-    enes.children!.set("notes", this.createDirectory("notes"));
 
     // Add some files
     enes.children!.set("README.md", this.createFile("README.md", `# Enes Barutcu

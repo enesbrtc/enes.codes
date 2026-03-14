@@ -1,160 +1,63 @@
 "use client";
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import cv from "../../data/cv";
 
 export default function ContactPanel() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent('Portfolio Contact');
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    window.location.href = `mailto:${cv.email}?subject=${subject}&body=${body}`;
-  };
+  const contactLinks = [
+    {
+      label: 'GitHub',
+      href: cv.github,
+      icon: Github,
+      external: true,
+    },
+    {
+      label: 'LinkedIn',
+      href: cv.linkedin,
+      icon: Linkedin,
+      external: true,
+    },
+    {
+      label: 'Email',
+      href: `mailto:${cv.email}`,
+      icon: Mail,
+      external: false,
+    },
+  ] as const;
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
+    <div className="flex min-h-screen items-center justify-center px-6">
       <motion.div
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center space-y-2"
+        transition={{ duration: 0.3 }}
+        className="surface-card w-full max-w-md -translate-y-10 p-6"
       >
-        <h2 className="text-heading-2 font-bold">Contact</h2>
-        <p className="text-body-small text-muted-foreground">Let&apos;s discuss systems and engineering</p>
+        <div className="space-y-2.5">
+          {contactLinks.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                className="group flex items-center gap-3 rounded-xl border border-white/6 bg-white/[0.02] px-4 py-3 text-sm text-muted-foreground transition-all duration-200 hover:border-[rgba(110,168,255,0.18)] hover:bg-white/[0.04] hover:text-foreground"
+              >
+                <span className="panel-icon h-8 w-8 flex-none">
+                  <Icon className="h-4 w-4 text-accent transition-colors duration-200 group-hover:text-foreground" />
+                </span>
+                <span className="font-medium">{item.label}</span>
+                <span className="min-w-0 truncate text-xs text-white/45 transition-colors duration-200 group-hover:text-white/70">
+                  {item.external ? item.href.replace(/^https?:\/\//, '') : cv.email}
+                </span>
+              </a>
+            );
+          })}
+        </div>
       </motion.div>
-
-      <div className="max-w-md mx-auto space-y-6">
-        {/* Contact Info */}
-        <motion.div
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1, duration: 0.3 }}
-          className="text-center space-y-4"
-        >
-          <div className="text-lg font-semibold text-foreground">{cv.name}</div>
-          <div className="text-body-small text-muted-foreground">{cv.title}</div>
-        </motion.div>
-
-        {/* Contact Methods */}
-        <motion.div
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.3 }}
-          className="space-y-3"
-        >
-          <div className="flex items-center space-x-4 p-4 surface-card pixel-hover">
-            <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-              <span className="text-accent">💌</span>
-            </div>
-            <div>
-              <div className="text-sm font-medium text-foreground">Email</div>
-              <div className="text-body-small text-muted-foreground">{cv.email}</div>
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-4 p-4 surface-card pixel-hover">
-            <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-              <span className="text-accent">📱</span>
-            </div>
-            <div>
-              <div className="text-sm font-medium text-foreground">Phone</div>
-              <div className="text-body-small text-muted-foreground">{cv.phone}</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Topics */}
-        <motion.div
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.3 }}
-          className="surface-card p-6 pixel-hover"
-        >
-          <h3 className="text-lg font-semibold text-accent mb-4">Open to conversations about:</h3>
-          <ul className="text-body text-muted-foreground space-y-2">
-            {[
-              "Infrastructure automation",
-              "Identity & access management",
-              "Platform operations",
-              "Engineering growth"
-            ].map((topic, index) => (
-              <li key={index} className="flex items-center space-x-3">
-                <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                <span>{topic}</span>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Contact Form */}
-        <motion.form
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.3 }}
-          onSubmit={handleSubmit}
-          className="surface-card p-6 space-y-4 pixel-hover"
-        >
-          <h3 className="text-lg font-semibold text-accent mb-4">Send Message</h3>
-
-          <div>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Your Name"
-              required
-              className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-all duration-200"
-            />
-          </div>
-
-          <div>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Your Email"
-              required
-              className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-all duration-200"
-            />
-          </div>
-
-          <div>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder="Your Message"
-              required
-              rows={4}
-              className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-all duration-200 resize-none"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-3 px-6 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors focus-ring"
-          >
-            Send Message
-          </button>
-        </motion.form>
-      </div>
     </div>
   );
 }
