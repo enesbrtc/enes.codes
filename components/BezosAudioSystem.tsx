@@ -70,7 +70,7 @@ export default function BezosAudioSystem() {
 
   return (
     <>
-      <audio ref={audioRef} src="/audio/bezos.mp3" preload="auto" autoplay />
+      <audio ref={audioRef} src="/audio/bezos.mp3" preload="auto" autoPlay />
       <AnimatePresence>
         {showOverlay && (
           <motion.div
