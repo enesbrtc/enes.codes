@@ -273,17 +273,8 @@ export class CommandParser {
             '',
             'Hidden commands discovered:',
             'matrix',
-            'coffee',
-            'sudo make coffee',
             'fortune',
             'debug',
-          ],
-        };
-      case 'coffee':
-        return {
-          output: [
-            'Brewing virtual coffee...',
-            '☕ done. Productivity restored.',
           ],
         };
       default:
@@ -415,15 +406,6 @@ export class CommandParser {
   }
 
   private handleSudo(args: string[]): CommandExecutionResult {
-    if (args.join(' ') === 'make coffee') {
-      return {
-        output: [
-          'Brewing elevated roast...',
-          '☕ coffee delivered with root privileges.',
-        ],
-      };
-    }
-
     return { output: ['Permission denied: nice try.'] };
   }
 

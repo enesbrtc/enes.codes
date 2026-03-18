@@ -24,26 +24,6 @@ const quickStats = [
 ];
 
 const engineeringFocus = [
-  {
-    title: 'Workflow Automation Platforms',
-    description: 'Process-driven systems coordinating approvals, provisioning, and operational workflows.',
-    icon: Cog,
-  },
-  {
-    title: 'Internal Operations Tools',
-    description: 'Interfaces for support teams and internal operators that centralize repetitive tasks into dependable flows.',
-    icon: Settings,
-  },
-  {
-    title: 'API Integrations',
-    description: 'Reliable integrations connecting services, automations, and external systems into a cohesive internal platform.',
-    icon: GitBranch,
-  },
-  {
-    title: 'Developer Tooling',
-    description: 'Utility layers, debug surfaces, and engineering support tools designed for speed and clarity.',
-    icon: Code2,
-  },
 ];
 
 const skillGroups = [
@@ -68,16 +48,16 @@ const skillGroups = [
 export default function HomePanel() {
   return (
     <div className="animate-fade-in">
-      <div className="mx-auto mt-6 max-w-[1200px] space-y-14 px-0 pb-2">
+        <div className="mx-auto mt-2 max-w-[1200px] space-y-2 px-0 pb-0">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="surface-card mx-auto max-w-[980px] p-5 sm:p-6"
+          className="surface-card mx-auto max-w-[1200px] p-3 sm:p-4"
         >
-          <div className="grid gap-5 lg:grid-cols-[140px_minmax(0,1.35fr)_minmax(260px,0.9fr)] lg:items-center">
+          <div className="grid gap-5 lg:grid-cols-[120px_minmax(0,1.35fr)_minmax(260px,0.9fr)] lg:items-center">
             <div className="flex justify-center lg:justify-start">
-              <div className="flex h-[140px] w-[140px] items-center justify-center rounded-full border-2 border-[rgba(120,160,255,0.25)] bg-[rgba(255,255,255,0.04)] p-1.5 shadow-[0_16px_32px_rgba(0,0,0,0.18)]">
+              <div className="flex h-[120px] w-[120px] items-center justify-center rounded-full border-2 border-[rgba(120,160,255,0.25)] bg-[rgba(255,255,255,0.04)] p-1.5 shadow-[0_16px_32px_rgba(0,0,0,0.18)]">
                 <Image
                   src={avatarImage}
                   alt="Enes Barutcu"
@@ -91,22 +71,22 @@ export default function HomePanel() {
               <div className="space-y-2">
                 <p className="section-kicker text-xs">Engineering Profile</p>
                 <div className="space-y-1">
-                  <h1 className="text-2xl font-semibold text-foreground sm:text-[1.75rem]">Enes Barutcu</h1>
-                  <p className="text-sm font-medium text-foreground/90">Application Support Engineer</p>
-                  <p className="text-sm text-muted-foreground">Adesso — Lidl Schwarz Project</p>
+                    <h1 className="text-xl font-semibold text-foreground sm:text-xl">Enes Barutcu</h1>
+                    <p className="text-xs font-medium text-foreground/90">Application Support Engineer</p>
+                    <p className="text-xs text-muted-foreground">Adesso — Lidl Schwarz Project</p>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-2">
                 {focusTags.map((tag) => (
-                  <span key={tag} className="panel-chip px-2.5 py-1 text-xs font-medium">
+                  <span key={tag} className="panel-chip px-2 py-1 text-xs font-medium">
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="panel-tile p-6">
+            <div className="panel-tile p-4">
               <div className="space-y-4">
                 <div className="space-y-1">
                   <p className="section-kicker text-xs">Impact Metrics</p>
@@ -126,35 +106,21 @@ export default function HomePanel() {
           </div>
         </motion.section>
 
+        <div className="text-right">
+          <p className="text-xs font-semibold text-accent">Press 'B' to activate Bezos mode</p>
+          <p className="text-xs font-semibold text-accent">Press &quot; to open terminal</p>
+        </div>
+
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="space-y-5"
+          className="space-y-1"
         >
           <div className="space-y-2">
             <p className="section-kicker text-xs">Engineering Focus</p>
-            <h2 className="text-xl font-semibold text-foreground">The kinds of systems this engineer builds.</h2>
-            <p className="panel-copy max-w-3xl text-sm leading-6">A compact capability view focused on operational reliability, workflow automation, integrations, and internal engineering support.</p>
-          </div>
-          <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-5">
-            {engineeringFocus.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <article key={item.title} className="panel-tile p-5 sm:p-6">
-                  <div className="space-y-3.5">
-                    <div className="panel-icon flex h-10 w-10 items-center justify-center">
-                      <Icon className="h-[18px] w-[18px] text-accent" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
-                      <p className="panel-copy text-sm leading-6">{item.description}</p>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+            <h2 className="text-base font-semibold text-foreground">The kinds of systems this engineer builds.</h2>
+            <p className="panel-copy max-w-3xl text-xs leading-5">A compact capability view focused on operational reliability, workflow automation, integrations, and internal engineering support.</p>
           </div>
         </motion.section>
 
@@ -162,16 +128,16 @@ export default function HomePanel() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.16 }}
-          className="space-y-5"
+          className="space-y-1"
         >
           <div className="space-y-2">
             <p className="section-kicker text-xs">Core Skills</p>
-            <h2 className="text-xl font-semibold text-foreground">A practical stack for automation, backend systems, and platform operations.</h2>
+            <h2 className="text-sm font-semibold text-foreground">A practical stack for automation, backend systems, and platform operations.</h2>
           </div>
-          <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-5">
+          <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-2">
             {skillGroups.map((group) => (
-              <article key={group.title} className="panel-tile p-5 sm:p-6">
-                <div className="space-y-3.5">
+              <article key={group.title} className="panel-tile p-2 sm:p-3">
+                <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-foreground/92">{group.title}</h3>
                   <div className="flex flex-wrap gap-2">
                     {group.skills.map((skill) => (

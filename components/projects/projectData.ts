@@ -22,7 +22,7 @@ export const allProjects: Project[] = [
     shortDesc: 'Headless commerce marketplace with a Medusa backend.',
     myRole: 'Full-stack developer using the Medusa commerce framework.',
     solution: 'Built a marketplace storefront with backend integration and payment processing.',
-    impact: 'Improved understanding of scalable commerce architecture and platform design.',
+    impact: 'Learned about commerce platform architecture and design.',
     tech: ['Medusa', 'Next.js', 'React', 'Node.js', 'PostgreSQL', 'Stripe'],
     links: { repo: 'https://github.com/aybarutcu/ta-store' },
   },
@@ -57,7 +57,7 @@ export const allProjects: Project[] = [
     shortDesc: 'Self-service portal for repetitive IT support requests.',
     myRole: 'Prototyped the self-service platform architecture and user flows.',
     solution: 'Built a proof-of-concept portal for automated password resets and access requests.',
-    impact: 'Demonstrated a path to reducing ticket volume and freeing support capacity.',
+    impact: 'Prototyped a self-service portal for common support tasks.',
     tech: ['Node.js', 'Express', 'PowerShell', 'ServiceNow'],
   },
   {
@@ -68,8 +68,8 @@ export const allProjects: Project[] = [
     shortDesc: 'Containerization strategy for internal utilities.',
     myRole: 'Researched deployment patterns and containerization strategy.',
     solution: 'Evaluated Docker-based packaging and lightweight CI/CD flows for internal tools.',
-    impact: 'Outlined a path to reducing environment drift and improving deployment reliability.',
-    tech: ['Docker', 'Git', 'CI/CD', 'Kubernetes'],
+    impact: 'Explored containerization for internal tools.',
+    tech: ['Docker', 'Git', 'CI'],
   },
 ];
 

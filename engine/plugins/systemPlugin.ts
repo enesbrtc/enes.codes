@@ -100,7 +100,6 @@ export function register(kernel: Kernel) {
       "resume         Show CV summary",
       "status         Show current engineering focus",
       "uptime         Display system uptime",
-      "coffee         Get a virtual coffee ☕",
       "debug life     Run life diagnostics",
       "sudo hire-me   Apply for engineering position",
       "clear          Clear terminal output",
@@ -396,8 +395,7 @@ export function register(kernel: Kernel) {
       "",
       "systems thinking ✔",
       "automation mindset ✔",
-      "production experience ✔",
-      "coffee dependency ✔"
+      "production experience ✔"
     ]);
   }, { scope: "global" });
 
@@ -715,43 +713,6 @@ export function register(kernel: Kernel) {
       "• ESLint/Prettier - Code quality",
       "• Jest - Testing framework"
     ]);
-  }, { scope: "global" });
-
-  // Coffee command - Fun easter egg
-  kernel.registerCommand("coffee", async (ctx: CommandContext) => {
-    const responses = [
-      [
-        "☕ Brewing a fresh cup of coffee...",
-        "",
-        "Current status: ☕ Hot • Creamy • Energizing",
-        "",
-        "Fun fact: Engineers run on coffee and curiosity.",
-        "Keep building amazing things! 🚀"
-      ],
-      [
-        "☕ Coffee machine activated...",
-        "",
-        "Ingredients:",
-        "• Freshly ground beans",
-        "• Hot water at 195°F",
-        "• Perfect extraction time",
-        "",
-        "Result: A perfect cup of engineering fuel ☕"
-      ],
-      [
-        "☕ Initiating coffee protocol...",
-        "",
-        "System message: Coffee.exe started successfully",
-        "",
-        "Warning: May cause increased coding productivity",
-        "Side effects: Enhanced problem-solving abilities",
-        "",
-        "Enjoy your coffee! ☕"
-      ]
-    ];
-
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-    ctx.pushOutput(randomResponse);
   }, { scope: "global" });
 
   // Status command - System status

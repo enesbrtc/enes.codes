@@ -1,5 +1,6 @@
 import "./globals.css";
 import AppProviders from "../components/AppProviders";
+import BezosAudioSystem from "../components/BezosAudioSystem";
 
 export default function RootLayout({
   children,
@@ -12,6 +13,7 @@ export default function RootLayout({
         <AppProviders>
           <main className="flex-1 pt-20 pb-4">{children}</main>
         </AppProviders>
+        <BezosAudioSystem />
       </body>
     </html>
   );

@@ -42,10 +42,31 @@ export default function AboutPanel() {
                     Adesso — Lidl Schwarz Project
                   </div>
                   <p className="text-body text-muted-foreground">
-                    Providing technical support and engineering solutions for enterprise-scale operations,
-                    focusing on infrastructure automation and system reliability.
+                    Supporting data warehouse processes used in supply chain planning.
+                    Monitoring data flow between headquarters, warehouses, and store systems.
+                    Investigating and resolving data pipeline issues.
+                    Validating data consistency between upstream and downstream systems.
+                    Supporting systems operating across multiple countries including the United States.
                   </p>
                 </div>
+              </div>
+            </motion.div>
+
+            {/* Education */}
+            <motion.div
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.07, duration: 0.3 }}
+              className="space-y-4"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-4 bg-accent rounded-full"></div>
+                <h3 className="text-lg font-semibold text-accent uppercase tracking-wide">Education</h3>
+              </div>
+              <div className="surface-card p-6">
+                <p className="text-body text-muted-foreground">
+                  Istanbul Bilgi University — Graphic Design
+                </p>
               </div>
             </motion.div>
 
@@ -62,11 +83,11 @@ export default function AboutPanel() {
               </div>
               <div className="surface-card p-6">
                 <div className="text-body text-muted-foreground space-y-3">
-                  <p>• Eliminate manual operational work through intelligent automation</p>
+                  <p>• Reduce manual operational work through automation</p>
                   <p>• Reduce incident response time with proactive monitoring and alerting</p>
-                  <p>• Streamline user lifecycle management across enterprise environments</p>
-                  <p>• Build self-service platforms that empower non-technical users</p>
-                  <p>• Containerize and deploy internal tools with reliability and scalability</p>
+                  <p>• Manage user lifecycle in enterprise environments</p>
+                  <p>• Build self-service tools for common tasks</p>
+                  <p>• Containerize and deploy internal tools</p>
                 </div>
               </div>
             </motion.div>
@@ -109,11 +130,11 @@ export default function AboutPanel() {
               </div>
               <div className="surface-card p-6">
                 <div className="text-body text-muted-foreground space-y-3">
-                  <p>• <strong className="text-foreground">Infrastructure as Code:</strong> Terraform, Ansible, and cloud-native tooling</p>
-                  <p>• <strong className="text-foreground">Identity & Access Management:</strong> Modern authentication and authorization patterns</p>
-                  <p>• <strong className="text-foreground">Observability Stack:</strong> Metrics, logs, and distributed tracing</p>
-                  <p>• <strong className="text-foreground">Container Orchestration:</strong> Kubernetes and microservices architecture</p>
-                  <p>• <strong className="text-foreground">API Design:</strong> RESTful services and GraphQL implementations</p>
+                  <p>• Automation scripting with PowerShell and Python</p>
+                  <p>• Active Directory and Microsoft 365 management</p>
+                  <p>• Monitoring and alerting with Zabbix</p>
+                  <p>• Containerization with Docker</p>
+                  <p>• Incident management with ServiceNow</p>
                 </div>
               </div>
             </motion.div>
@@ -133,11 +154,11 @@ export default function AboutPanel() {
           </div>
           <div className="surface-card p-6 mt-4">
             <div className="text-body text-muted-foreground space-y-3">
-              <p><strong className="text-foreground">Automation First:</strong> Every manual process is an opportunity for automation. I design systems that work reliably without human intervention.</p>
-              <p><strong className="text-foreground">Observability Matters:</strong> You can&apos;t improve what you can&apos;t measure. Every system I build includes comprehensive monitoring and alerting.</p>
-              <p><strong className="text-foreground">Humans in the Loop:</strong> Automation should empower humans, not replace them. Complex decisions require human judgment and context.</p>
-              <p><strong className="text-foreground">Start Simple:</strong> Begin with manual processes, then automate. Complexity should be added only when necessary.</p>
-              <p><strong className="text-foreground">Security by Design:</strong> Every system considers security implications from the ground up, especially in identity and access management.</p>
+              <p><strong className="text-foreground">Automation First:</strong> Replace manual processes with automation where possible.</p>
+              <p><strong className="text-foreground">Observability Matters:</strong> Use monitoring and alerting to track system performance.</p>
+              <p><strong className="text-foreground">Humans in the Loop:</strong> Keep humans involved in complex decisions.</p>
+              <p><strong className="text-foreground">Start Simple:</strong> Begin with manual processes, then automate.</p>
+              <p><strong className="text-foreground">Security by Design:</strong> Consider security in system design, especially identity management.</p>
             </div>
           </div>
         </motion.div>

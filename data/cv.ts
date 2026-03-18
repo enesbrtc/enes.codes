@@ -11,6 +11,17 @@ export const cv = {
     "Infrastructure & Identity engineer with 5+ years owning Active Directory, Microsoft 365 and 24/7 production services. Focused on automation-first solutions, monitoring, incident response and driving operational ownership.",
   experience: [
     {
+      company: "Adesso",
+      date: "03/2025 - Present",
+      role: "Application Support Engineer",
+      bullets: [
+        "Monitoring and supporting data warehouse processes for supply chain planning systems.",
+        "Ensuring stable data flow between headquarters, warehouses, and store systems across 32 countries including the United States.",
+        "Investigating and resolving data pipeline issues to maintain operational stability.",
+        "Validating data consistency between upstream and downstream systems.",
+      ],
+    },
+    {
       company: "TAV Technologies",
       date: "08/2022 - 03/2025",
       role: "IT Operations / NOC Specialist",
@@ -39,7 +50,7 @@ export const cv = {
     },
   ],
   education: [
-    { school: "Istanbul Bilgi University", degree: "Associate Degree – Graphic Design", date: "01/2017 - 01/2019" },
+    { school: "Istanbul Bilgi University", degree: "Bachelor's Degree – Graphic Design", date: "01/2017 - 01/2019" },
     { school: "Anadolu University", degree: "Bachelor of Education – English Language & Literature", date: "01/2013 - 01/2017" },
   ],
   certifications: ["Foundations of Cybersecurity (Google)", "CCNA (Cisco)", "ITIL Foundation"],

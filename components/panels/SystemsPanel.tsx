@@ -14,63 +14,33 @@ export default function SystemsPanel() {
   const featuredSystems = [
     {
       title: "Automated User Lifecycle Management",
-      problem: "Manual user provisioning consumed significant IT support time and created delays in user access.",
-      solution: "Built end-to-end identity automation system with event-driven workflows, approval processes, and comprehensive audit logging.",
-      impact: "Reduced provisioning time from 30 minutes to 3 minutes per user, serving 1200+ enterprise users across 3 locations.",
+      problem: "Manual onboarding and offboarding consumed large support time and caused delays.",
+      solution: "Built AD + M365 automation scripts to provision and deprovision users; implemented approval workflow and logging.",
+      impact: "Eliminated manual onboarding tasks and reduced provisioning time from ~30m to ~3m per user.",
       status: "Production",
-      scale: "1200+ users, 3 locations",
+      scale: "1200+ users",
       tech: ["PowerShell", "Python", "Microsoft Graph", "Active Directory"],
-      architecture: "Event-driven automation with approval workflows and comprehensive audit logging"
-    },
-    {
-      title: "Self-Service Support Automation Platform",
-      problem: "High volume of repetitive support tickets overwhelmed the helpdesk and delayed user issue resolution.",
-      solution: "Developed internal platform enabling users to resolve common IT issues independently through automated workflows.",
-      impact: "60% reduction in support tickets, 10+ hours/week saved, serving 800+ active users with 50+ self-service workflows.",
-      status: "Production",
-      scale: "800+ active users, 50+ self-service workflows",
-      tech: ["Node.js", "Express", "PowerShell", "ServiceNow API"],
-      architecture: "Microservices architecture with secure API gateways and role-based access control"
+      architecture: "Automation scripts with approval workflows and logging"
     },
     {
       title: "Internal Tools Containerization",
-      problem: "Internal utilities were difficult to deploy across environments, causing configuration drift and deployment failures.",
-      solution: "Containerized operational utilities ecosystem with automated deployment pipelines and environment consistency.",
-      impact: "Eliminated environment drift, reduced deployment time from 2 hours to 15 minutes, managing 8 services across multi-environments.",
+      problem: "Internal utilities were hard to deploy and maintain across environments.",
+      solution: "Containerized services with Docker, added simple CI pipelines and rollout scripts.",
+      impact: "Streamlined deployments and reduced environment drift for internal tools.",
       status: "Production",
-      scale: "8 services, multi-environment deployment",
-      tech: ["Docker", "Git", "CI/CD", "Kubernetes"],
-      architecture: "Container orchestration with automated testing, deployment pipelines, and monitoring"
+      scale: "Multiple services",
+      tech: ["Docker", "Git", "CI"],
+      architecture: "Containerized services with basic CI pipelines"
     },
     {
-      title: "Enterprise Monitoring & Alerting System",
-      problem: "Legacy monitoring generated excessive false positives, causing NOC team alert fatigue and missed critical incidents.",
-      solution: "Implemented intelligent alert correlation, severity-based routing, and automated suppression for maintenance windows.",
-      impact: "Reduced alert volume by 80%, increased incident response effectiveness by 50%, monitoring 200+ services 24/7.",
+      title: "Self-service Support Automation",
+      problem: "High volume of repetitive support requests wasting technician time.",
+      solution: "Built self-service scripts and a lightweight internal portal for common tasks (password reset, access requests).",
+      impact: "Reduced repetitive tickets and freed ~10 hours/week for the support team.",
       status: "Production",
-      scale: "200+ services, 24/7 monitoring",
-      tech: ["Prometheus", "Grafana", "AlertManager", "Elasticsearch"],
-      architecture: "Distributed monitoring with intelligent correlation and automated incident response workflows"
-    },
-    {
-      title: "API Rate Limiting & Resilience Framework",
-      problem: "External API throttling caused production failures during peak usage periods, affecting user experience.",
-      solution: "Built intelligent backoff, request batching, and circuit breaker patterns for Microsoft Graph API integration.",
-      impact: "Eliminated API throttling failures, achieved 99.9% success rate, handling 10,000+ daily API operations.",
-      status: "Production",
-      scale: "10,000+ daily operations, multi-tenant",
-      tech: ["Python", "Redis", "Microsoft Graph", "Circuit Breaker"],
-      architecture: "Resilient API client with intelligent retry logic, request queuing, and adaptive rate limiting"
-    },
-    {
-      title: "Incident Response Automation Platform",
-      problem: "Production incidents required extensive manual intervention and lacked standardized response procedures.",
-      solution: "Developed automated incident response workflows with runbooks, automated diagnostics, and escalation procedures.",
-      impact: "Reduced mean time to resolution by 60%, achieved 99.9% uptime, standardized response for 50+ incident types.",
-      status: "Production",
-      scale: "50+ incident types, 24/7 coverage",
-      tech: ["Python", "Ansible", "PagerDuty", "ServiceNow"],
-      architecture: "Event-driven incident response with automated diagnostics, remediation, and comprehensive documentation"
+      scale: "800+ users",
+      tech: ["Node.js", "Express", "PowerShell", "ServiceNow"],
+      architecture: "Self-service portal with automated workflows"
     }
   ];
 

@@ -12,23 +12,6 @@ export function register(kernel: Kernel) {
     ctx.pushOutput(["Hello. Type 'help' to get started."]);
   }, { hidden: true });
 
-  // Coffee command
-  kernel.registerCommand("coffee", async (ctx: CommandContext) => {
-    ctx.pushOutput([
-      "       ( (",
-      "        ) )",
-      "     ........",
-      "     |      |]",
-      "     \\      /",
-      "      `----'",
-      "",
-      "☕ Fresh coffee brewed just for you!",
-      "",
-      "Fun fact: This command was added because every developer",
-      "needs coffee to function. Including the one who built this."
-    ]);
-  }, { hidden: true });
-
   // Why command
   kernel.registerCommand("why", async (ctx: CommandContext) => {
     ctx.pushOutput([
@@ -133,7 +116,6 @@ export function register(kernel: Kernel) {
       "↑ ↑ ↓ ↓ ← → ← → B A START",
       "",
       "Cheat mode enabled:",
-      "• Unlimited coffee ☕",
       "• Instant code compilation ⚡",
       "• Bug-free deployments 🎯",
       "• Infinite patience with legacy code 🧘",

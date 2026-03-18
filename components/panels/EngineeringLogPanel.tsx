@@ -13,70 +13,37 @@ export default function EngineeringLogPanel() {
 
   const engineeringLogs = [
     {
-      id: "alert-fatigue-monitoring",
-      title: "Reducing Alert Fatigue in Enterprise Monitoring",
-      summary: "Transformed overwhelming alert noise into actionable intelligence through correlation and severity-based routing in a 24/7 NOC environment.",
-      date: "2024-01-15",
-      problem: "NOC team was ignoring monitoring alerts due to excessive false positives and alert volume, leading to missed critical incidents in production systems.",
-      context: "Supporting enterprise-scale operations with hundreds of services generating thousands of daily alerts across multiple monitoring platforms.",
-      approach: "Conducted comprehensive alert analysis, implemented intelligent correlation rules, severity-based routing, and automated alert suppression for maintenance windows.",
-      outcome: "Reduced alert volume by 80%, increased incident response effectiveness by 50%, and improved NOC team satisfaction through actionable alert intelligence.",
-      tags: ["monitoring", "alerting", "observability", "incident-response", "automation"]
-    },
-    {
       id: "user-lifecycle-automation",
-      title: "Automating User Lifecycle Management in Enterprise Identity",
-      summary: "Built comprehensive identity automation workflows that reduced manual provisioning time from 30 minutes to 3 minutes per user across 1200+ enterprise accounts.",
+      title: "Automating User Lifecycle Management",
+      summary: "Built automation scripts for user provisioning in Active Directory and Microsoft 365.",
       date: "2024-02-20",
-      problem: "Manual user onboarding and offboarding processes created significant delays and inconsistencies in enterprise identity management.",
-      context: "Managing identity lifecycle for 1200+ users across multiple locations with complex Active Directory and Microsoft 365 integrations.",
-      approach: "Designed event-driven automation workflows with approval processes, comprehensive audit logging, and integration with existing identity systems.",
-      outcome: "Eliminated manual provisioning bottlenecks, improved user experience with instant access, and established comprehensive audit trails for compliance.",
-      tags: ["identity-management", "automation", "active-directory", "microsoft-365", "compliance"]
-    },
-    {
-      id: "production-support-lessons",
-      title: "Lessons from Supporting Large-Scale Production Environments",
-      summary: "Developed systematic approaches to incident response and system reliability through experience supporting enterprise-scale operations with 99.9% uptime requirements.",
-      date: "2024-03-10",
-      problem: "Production incidents were causing extended downtime and requiring extensive manual intervention to restore services.",
-      context: "Supporting critical enterprise systems with 24/7 availability requirements and complex interdependencies between services.",
-      approach: "Implemented structured incident response frameworks, proactive monitoring enhancements, and automated recovery procedures with comprehensive documentation.",
-      outcome: "Achieved 99.9% uptime targets, reduced mean time to resolution by 60%, and established predictable incident response patterns.",
-      tags: ["incident-response", "reliability", "production-support", "monitoring", "automation"]
+      problem: "Manual onboarding and offboarding consumed large support time and caused delays.",
+      context: "Managing identity lifecycle for 1200+ users across multiple locations.",
+      approach: "Designed automation workflows with approval processes and audit logging.",
+      outcome: "Eliminated manual onboarding tasks and reduced provisioning time from ~30m to ~3m per user.",
+      tags: ["identity-management", "automation", "active-directory", "microsoft-365"]
     },
     {
       id: "internal-tools-efficiency",
-      title: "Building Internal Tools for Operational Efficiency",
-      summary: "Created self-service automation platforms that reduced support ticket volume by 60% and saved 10+ hours of manual work per week.",
+      title: "Containerizing Internal Tools",
+      summary: "Containerized internal utilities to improve deployment consistency.",
       date: "2024-01-05",
-      problem: "IT support teams were overwhelmed by repetitive manual tasks and user requests that could be automated through self-service interfaces.",
-      context: "Supporting 800+ users with common IT operations like password resets, access requests, and system configurations across distributed locations.",
-      approach: "Developed microservices-based self-service platform with secure API gateways, role-based access control, and comprehensive audit logging.",
-      outcome: "Empowered users with self-service capabilities, reduced support burden by 60%, and improved operational efficiency through automation.",
-      tags: ["internal-tools", "self-service", "automation", "microservices", "user-experience"]
+      problem: "Internal utilities were hard to deploy and maintain across environments.",
+      context: "Managing multiple internal tools with varying dependencies.",
+      approach: "Containerized services with Docker and added simple CI pipelines.",
+      outcome: "Streamlined deployments and reduced environment drift for internal tools.",
+      tags: ["containers", "docker", "ci", "deployment"]
     },
     {
-      id: "container-adoption-strategy",
-      title: "Container Adoption for Internal Tools Ecosystem",
-      summary: "Eliminated environment drift and reduced deployment time from 2 hours to 15 minutes through comprehensive containerization strategy.",
+      id: "self-service-support",
+      title: "Building Self-Service Support Tools",
+      summary: "Created self-service portal for common IT support tasks.",
       date: "2024-02-10",
-      problem: "Internal tools deployment was inconsistent across environments, causing configuration drift and deployment failures.",
-      context: "Managing multiple development, staging, and production environments with varying OS versions and dependency conflicts.",
-      approach: "Implemented Docker containerization with multi-stage builds, established CI/CD pipelines with automated testing, and created orchestration patterns.",
-      outcome: "Achieved consistent deployments across all environments, eliminated configuration drift, and improved developer productivity through reliable tooling.",
-      tags: ["containers", "docker", "ci-cd", "infrastructure", "deployment"]
-    },
-    {
-      id: "api-rate-limiting-production",
-      title: "Handling API Rate Limits in Production Systems",
-      summary: "Implemented intelligent backoff and batching strategies to handle Microsoft Graph API throttling during peak user onboarding periods.",
-      date: "2024-01-28",
-      problem: "Microsoft Graph API calls were failing during peak user onboarding, causing incomplete account provisioning and user experience issues.",
-      context: "Enterprise-scale user lifecycle management with thousands of daily account operations across multiple integrated systems.",
-      approach: "Monitored API usage patterns, implemented exponential backoff with jitter, request batching, and intelligent retry logic with circuit breaker patterns.",
-      outcome: "Eliminated API throttling failures, improved onboarding success rate to 99.9%, and optimized system resource utilization.",
-      tags: ["api", "rate-limiting", "microsoft-graph", "reliability", "performance"]
+      problem: "High volume of repetitive support requests wasting technician time.",
+      context: "Supporting 800+ users with common IT operations.",
+      approach: "Built self-service scripts and lightweight portal for password resets and access requests.",
+      outcome: "Reduced repetitive tickets and freed ~10 hours/week for the support team.",
+      tags: ["internal-tools", "self-service", "automation", "support"]
     }
   ];
 
